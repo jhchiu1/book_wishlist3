@@ -79,6 +79,8 @@ def book_json_manipulation(json_as_dict):
                     book_container['author'],
                     book_container['read'] == 'True',
                     int(book_container['id']))
+        book.rating = book_container['rating']
+        book.review = book_container['review']
         book_list.append(book)
 
 
@@ -90,6 +92,8 @@ def book_list_manipulation():
         book_container = {'title': book.title,
                           'author': book.author,
                           'read': str(book.read),
+                          'rating': book.rating,
+                          'review': book.review,
                           'id': str(book.id)}
         book_json[str(book.id)] = book_container
 
