@@ -12,6 +12,8 @@ def display_menu_get_choice():
         5. Search for book by title
         6. Edit a title or author
         7. Delete a book
+        8. Sort books by title
+        9. Sort books by author
         q. Quit
     ''')
 
@@ -68,9 +70,14 @@ def ask_what_to_edit():
         response = "title"
     return response
 
+
+def get_date_read():
+    ''' Added date read for user input with no rigid format '''
+    date = input("When did you finish this book?")
+    return date    
+
 def get_new_book_info():
     ''' Get title and author of new book from user '''
-
     title = input('Enter title: ')
     author = input('Enter author: ')
     in_system = wishlist.check_book_in_system(title, author)
@@ -117,3 +124,5 @@ def get_read_book_rating_review():
 def message(msg):
     '''Display a message to the user'''
     print(msg)
+
+def 

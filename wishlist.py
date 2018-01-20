@@ -27,6 +27,12 @@ def handle_choice(choice):
     elif choice == '7':
         delete()
 
+    elif choice == '8':
+        sort_by_title()
+
+    elif choice == '9':
+        sort_by_author()
+
     elif choice == 'q':
         quit()
 
@@ -103,6 +109,14 @@ def quit():
     '''Perform shutdown tasks'''
     datastore.shutdown()
     ui.message('Bye!')
+
+def delete():
+    ''' Ask user input for book id, remove book from db if deleted, show message if action completed '''
+    id = ui.ask_for_book_id()
+    for book in datastore.book_list:
+        if book.id == id:
+            datastore.book_list.remove(book)
+            ui.message("Successfully deleted.")
 
 def sort_by_title():
     ''' Sort by book title '''
