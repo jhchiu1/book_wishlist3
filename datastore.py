@@ -1,12 +1,11 @@
 import os
 import json
 from book import Book
+from ui import get_read_book_rating_review
 
 DATA_DIR = 'data'
 BOOKS_FILE_NAME = os.path.join(DATA_DIR, 'wishlist.txt')
 COUNTER_FILE_NAME = os.path.join(DATA_DIR, 'counter.txt')
-
-separator = '^^^'  # a string probably not in any valid data relating to a book
 
 book_list = []
 counter = 0
@@ -54,13 +53,16 @@ def generate_id():
 
 def set_read(book_id, read):
     """ Update book with given book_id to read. Return True if book is found in DB and update is made,
-    False otherwise. """
+    False otherwise. Set a rating and review for book"""
 
     global book_list
 
     for book in book_list:
 
         if book.id == book_id:
+            rating, review = get_read_book_rating_review()
+            book.rating = rating
+            book.review = review
             book.read = True
             return True
 
