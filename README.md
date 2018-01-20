@@ -22,6 +22,7 @@ These instructions will get you a copy of the project up and running on your loc
    * 2 - Show Read
    * 3 - Mark Books as Red
    * 4 - New Book
+   * 5 - Search for Book by Title
    * q - Quit
 
 ### Prerequisites
