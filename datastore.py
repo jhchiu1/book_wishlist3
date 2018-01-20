@@ -134,7 +134,7 @@ def read():
 def write():
     """Save all data to a file - one for books, one for the current counter value, for persistent storage"""
 
-    output_data = make_output_data()
+    output_data = book_list_manipulation()
 
     # Create data directory
     try:
@@ -143,7 +143,8 @@ def write():
         pass  # Ignore - if directory exists, don't need to do anything.
 
     with open(BOOKS_FILE_NAME, 'w') as f:
-        f.write(output_data)
+        # f.write(output_data)
+        json.dump(output_data, f)
 
     with open(COUNTER_FILE_NAME, 'w') as f:
         f.write(str(counter))
