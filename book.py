@@ -1,5 +1,4 @@
 class Book:
-
     ''' Represents one book in a user's list of books'''
 
     NO_ID = -1
@@ -9,12 +8,16 @@ class Book:
         self.title = title
         self.author = author
         self.read = read
-        self.id=id
+        self.id = id
+        self.rating = None
+        self.review = None
 
+    def add_rating_review(self, rating, review):
+        self.rating = rating
+        self.review = review
 
     def set_id(self, id):
         self.id = id
-
 
     def __str__(self):
         read_str = 'no'
@@ -28,6 +31,5 @@ class Book:
         template = 'id: {} Title: {} Author: {} Read: {}'
         return template.format(id_str, self.title, self.author, read_str)
 
-
     def __eq__(self, other):
-        return self.title == other.title and self.author == other.author and self.read == other.read and self.id==other.id
+        return self.title == other.title and self.author == other.author and self.read == other.read and self.id == other.id
