@@ -1,4 +1,5 @@
 import os
+import json
 from book import Book
 
 DATA_DIR = 'data'
@@ -75,6 +76,20 @@ def make_book_list(string_from_file):
         data = book_str.split(separator)
         book = Book(data[0], data[1], data[2] == 'True', int(data[3]))
         book_list.append(book)
+
+
+def book_list_manipulation():
+    """ create a string containing all data on books, for writing to output file """
+    global book_list
+    book_json = {}
+    for book in book_list:
+        book_container = {'title': book.title,
+                          'author': book.author,
+                          'read': str(book.read),
+                          'id': str(book.id)}
+        book_json[str(book.id)] = book_container
+
+    return book_json
 
 
 def make_output_data():
