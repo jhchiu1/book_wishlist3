@@ -8,6 +8,7 @@ Manage a list of books that a user wants to read, or has read. For practicing te
 * Sort books by title or author
 * Keeps track of read books
 * Rating system
+* Saves books as JSON
 * Upcomming: SQL Storage
 
 ## Getting Started
