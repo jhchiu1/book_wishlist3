@@ -9,7 +9,7 @@ def display_menu_get_choice():
         2. Show books that have been read
         3. Mark a book as read
         4. Add book to wishlist
-        5. Search for book
+        5. Search for book by title
         q. Quit
     ''')
 
