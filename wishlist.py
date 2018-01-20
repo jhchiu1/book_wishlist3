@@ -21,6 +21,12 @@ def handle_choice(choice):
     elif choice == '5':
         search_book()
 
+    elif choice == '6':
+        edit()
+
+    elif choice == '7':
+        delete()
+
     elif choice == 'q':
         quit()
 
@@ -61,6 +67,25 @@ def search_book():
     book_title = ui.ask_for_book_title()
     found = datastore.get_books(title=book_title)
     ui.show_list(found)
+
+def edit():
+    '''Get info from user, edit book title, author'''
+    id = ui.ask_for_book_id()
+    to_edit = ui.ask_what_to_edit()
+    new_book = ui.get_new_book_info()
+    for book in datastore.show_list:
+        if book.id == id:
+            read = book.read
+            title = book.title
+            author = book.author
+            if to_edit == 'author':
+                datastore.book_list.remove(book)
+                datastore.book_list.append(Book(title, new_book_info, read, id))
+            elif to_edit == 'title':
+                datastore.show_list.remove(book)
+                datastore.show_list.append(Book(new_book_info, author, read, id))
+
+    ui.message("Successfully updated.")
 
 
 def quit():
