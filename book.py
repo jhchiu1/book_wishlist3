@@ -28,8 +28,13 @@ class Book:
         if id == -1:
             id_str = '(no id)'
 
-        template = 'id: {} Title: {} Author: {} Read: {}'
-        return template.format(id_str, self.title, self.author, read_str)
+        template = 'id: {} Title: {} Author: {} Read: {} Rating: {} Review: {}'
+        return template.format(id_str, self.title, self.author, read_str, self.rating, self.review)
 
     def __eq__(self, other):
-        return self.title == other.title and self.author == other.author and self.read == other.read and self.id == other.id
+        return self.title == other.title and \
+               self.author == other.author and \
+               self.read == other.read and \
+               self.id == other.id and \
+               self.rating == other.rating and \
+               self.review == other.review
