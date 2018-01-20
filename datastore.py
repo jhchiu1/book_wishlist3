@@ -29,10 +29,12 @@ def get_books(**kwargs):
 
     if len(kwargs) == 0:
         return book_list
-
-    if 'read' in kwargs:
+    elif 'read' in kwargs:
         read_books = [book for book in book_list if book.read == kwargs['read']]
         return read_books
+    else:
+        found_books = [book for book in book_list if book.title == kwargs['title']]
+        return found_books
 
 
 def add_book(book):
