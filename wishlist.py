@@ -18,6 +18,9 @@ def handle_choice(choice):
     elif choice == '4':
         new_book()
 
+    elif choice == '5':
+        search_book()
+
     elif choice == 'q':
         quit()
 
@@ -51,6 +54,13 @@ def new_book():
     new_book = ui.get_new_book_info()
     datastore.add_book(new_book)
     ui.message('Book added: ' + str(new_book))
+
+
+def search_book():
+    '''Get choice from user, search datastore, display found/not found'''
+    book_title = ui.ask_for_book_title()
+    found = datastore.get_books(title=book_title)
+    ui.show_list(found)
 
 
 def quit():
