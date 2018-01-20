@@ -104,6 +104,15 @@ def quit():
     datastore.shutdown()
     ui.message('Bye!')
 
+def sort_by_title():
+    ''' Sort by book title '''
+    unread = datastore.get_sorted_books_by_title()
+    ui.show_list(unread)
+
+def sort_by_author():
+    ''' Sort by book author '''
+    unread = datastore.get_sorted_books_by_author()
+    ui.show_list(unread)
 
 def main():
 
