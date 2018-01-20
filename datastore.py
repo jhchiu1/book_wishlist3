@@ -12,26 +12,9 @@ counter = 0
 
 
 def setup():
-    """ Read book info from file, if file exists. """
+    """ read(): Read book info from file, if file exists. """
+    read()
 
-    global counter
-
-    try:
-        with open(BOOKS_FILE_NAME) as f:
-            data = f.read()
-            make_book_list(data)
-    except FileNotFoundError:
-        # First time program has run. Assume no books.
-        pass
-
-    try:
-        with open(COUNTER_FILE_NAME) as f:
-            try:
-                counter = int(f.read())
-            except:
-                counter = 0
-    except:
-        counter = len(book_list)
 
 
 def shutdown():
@@ -123,3 +106,30 @@ def make_output_data():
     all_books_string = '\n'.join(output_data)
 
     return all_books_string
+
+
+def read():
+    """ Read book info from file, if file exists. """
+    global counter
+
+    try:
+        with open(BOOKS_FILE_NAME) as f:
+            data = f.read()
+            make_book_list(data)
+    except FileNotFoundError:
+        # First time program has run. Assume no books.
+        pass
+
+    try:
+        with open(COUNTER_FILE_NAME) as f:
+            try:
+                counter = int(f.read())
+            except:
+                counter = 0
+    except:
+        counter = len(book_list)
+
+
+def write():
+    """ main write method for writing counter and wishlist txt files """
+    pass
