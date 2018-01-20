@@ -71,7 +71,7 @@ def get_read_book_rating_review():
             while True:
                 rating = int(input('Enter Rating (1-5): '))
                 if 1 <= rating <= 5:
-                    rating = '★' * rating
+                    rating = '*' * rating
                     break
                 else:
                     print('Please input a number between 1 and 5')
