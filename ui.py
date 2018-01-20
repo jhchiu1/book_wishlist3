@@ -64,6 +64,27 @@ def get_new_book_info():
     return Book(title, author)
 
 
+def get_read_book_rating_review():
+    ''' Get a rating and review about recently read book from user '''
+    while True:
+        try:
+            while True:
+                rating = int(input('Enter Rating (1-5): '))
+                if 1 <= rating <= 5:
+                    rating = '★' * rating
+                    break
+                else:
+                    print('Please input a number between 1 and 5')
+                    continue
+        except ValueError:
+            print('Please enter a positive number')
+            continue
+
+        review = input('Enter review: ')
+        return rating, review
+
+
+
 def message(msg):
     '''Display a message to the user'''
     print(msg)
