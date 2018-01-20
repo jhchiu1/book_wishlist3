@@ -65,21 +65,21 @@ def set_read(book_id, read):
     return False  # return False if book id is not found
 
 
-def make_book_list(string_from_file):
-    """ turn the string from the file into a list of Book objects """
-
+def book_json_manipulation(json_as_dict):
+    """ converts json to list """
     global book_list
 
-    books_str = string_from_file.split('\n')
-
-    for book_str in books_str:
-        data = book_str.split(separator)
-        book = Book(data[0], data[1], data[2] == 'True', int(data[3]))
+    for key, value in json_as_dict.items():
+        book_container = json_as_dict[key]
+        book = Book(book_container['title'],
+                    book_container['author'],
+                    book_container['read'] == 'True',
+                    int(book_container['id']))
         book_list.append(book)
 
 
 def book_list_manipulation():
-    """ create a string containing all data on books, for writing to output file """
+    """ converts list to json """
     global book_list
     book_json = {}
     for book in book_list:
@@ -98,8 +98,8 @@ def read():
 
     try:
         with open(BOOKS_FILE_NAME) as f:
-            data = f.read()
-            make_book_list(data)
+            book_json = json.load(f)
+            book_json_manipulation(book_json)
     except FileNotFoundError:
         # First time program has run. Assume no books.
         pass
@@ -126,7 +126,6 @@ def write():
         pass  # Ignore - if directory exists, don't need to do anything.
 
     with open(BOOKS_FILE_NAME, 'w') as f:
-        # f.write(output_data)
         json.dump(output_data, f)
 
     with open(COUNTER_FILE_NAME, 'w') as f:
