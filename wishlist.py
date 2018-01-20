@@ -87,6 +87,17 @@ def edit():
 
     ui.message("Successfully updated.")
 
+def check_book_in_system(title, author):
+    ''' Check to see if book has been read '''
+    for book in datastore.book_list:
+        if book.author == author and book.title == title and book.read is True:
+            return "read"
+        elif book.author == author and book.title == title and book.read is False:
+            return "unread"
+        elif book.author != author or book.title != title:
+            return False
+    if len(datastore.book_list) == 0:
+        return False
 
 def quit():
     '''Perform shutdown tasks'''

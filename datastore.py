@@ -82,6 +82,8 @@ def book_json_manipulation(json_as_dict):
         book.rating = book_container['rating']
         book.review = book_container['review']
         book_list.append(book)
+    except Exception as e:
+        print("Error: Not located in index!", e)
 
 
 def book_list_manipulation():
