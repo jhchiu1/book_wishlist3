@@ -92,23 +92,6 @@ def book_list_manipulation():
     return book_json
 
 
-def make_output_data():
-    """ create a string containing all data on books, for writing to output file """
-
-    global book_list
-
-    output_data = []
-
-    for book in book_list:
-        output = [book.title, book.author, str(book.read), str(book.id)]
-        output_str = separator.join(output)
-        output_data.append(output_str)
-
-    all_books_string = '\n'.join(output_data)
-
-    return all_books_string
-
-
 def read():
     """ Read book info from file, if file exists. """
     global counter
