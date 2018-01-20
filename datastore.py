@@ -63,6 +63,7 @@ def set_read(book_id, read):
             rating, review = get_read_book_rating_review()
             book.rating = rating
             book.review = review
+            book.date_read = date_read
             book.read = True
             return True
 
@@ -96,6 +97,7 @@ def book_list_manipulation():
                           'read': str(book.read),
                           'rating': book.rating,
                           'review': book.review,
+                          'date read': book.date_read,
                           'id': str(book.id)}
         book_json[str(book.id)] = book_container
 
