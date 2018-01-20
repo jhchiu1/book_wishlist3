@@ -16,23 +16,9 @@ def setup():
     read()
 
 
-
 def shutdown():
-    """Save all data to a file - one for books, one for the current counter value, for persistent storage"""
-
-    output_data = make_output_data()
-
-    # Create data directory
-    try:
-        os.mkdir(DATA_DIR)
-    except FileExistsError:
-        pass  # Ignore - if directory exists, don't need to do anything.
-
-    with open(BOOKS_FILE_NAME, 'w') as f:
-        f.write(output_data)
-
-    with open(COUNTER_FILE_NAME, 'w') as f:
-        f.write(str(counter))
+    """write(): Save all data to a file - one for books, one for the current counter value, for persistent storage"""
+    write()
 
 
 def get_books(**kwargs):
@@ -131,5 +117,18 @@ def read():
 
 
 def write():
-    """ main write method for writing counter and wishlist txt files """
-    pass
+    """Save all data to a file - one for books, one for the current counter value, for persistent storage"""
+
+    output_data = make_output_data()
+
+    # Create data directory
+    try:
+        os.mkdir(DATA_DIR)
+    except FileExistsError:
+        pass  # Ignore - if directory exists, don't need to do anything.
+
+    with open(BOOKS_FILE_NAME, 'w') as f:
+        f.write(output_data)
+
+    with open(COUNTER_FILE_NAME, 'w') as f:
+        f.write(str(counter))
