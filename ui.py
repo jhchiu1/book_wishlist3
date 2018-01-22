@@ -1,4 +1,5 @@
 from book import Book
+import wishlist
 
 
 def display_menu_get_choice():
@@ -48,57 +49,27 @@ def ask_for_book_id():
         except ValueError:
             print('Please enter an integer number')
 
-
 def ask_for_book_title():
     ''' Ask user for book title, validate to ensure it is a string '''
     while True:
-        search_string = input('Enter book title:')
+        search_string = input('Enter book title: ')
         if isinstance(search_string, str):
             return search_string
         else:
             print('Please enter a string')
             continue
 
-def ask_what_to_edit():
-    ''' Ask user to if they want to edit Author or Title '''
-    response = input("Do you wish to edit the Author or Title? Enter 1 for Author or 2 for Title: ")
-    while response != "1" and response != "2":
-        response = input("Try again, please enter 1 or 2 as an option. \nDo you wish to edit the Author or Title? Enter 1 for Author or 2 for Title: ")
-    if response == "1":
-        response = "author"
-    elif response == "2":
-        response = "title"
-    return response
-
-
 def get_date_read():
     ''' Added date read for user input with no rigid format '''
-    date = input("When did you finish this book?")
+    date = input("When did you finish this book? ")
     return date    
 
 def get_new_book_info():
     ''' Get title and author of new book from user '''
+
     title = input('Enter title: ')
     author = input('Enter author: ')
-    in_system = wishlist.check_book_in_system(title, author)
-    if in_system is False:
-        return Book(title, author)
-    elif in_system == "read":
-        answer = input("You already marked a book as 'Read' with the same title and author. Are you sure "
-                           "you want to add this book again? Enter 1 for yes or 2 for no.")
-        while answer != "1" and answer != "2":
-            answer = input("Try again, please enter 1 or 2. You already marked a book as Read with the same "
-                               "title and author. Are you sure you want to add this book again? Enter 1 for yes or 2 for no.")
-        if answer == "1":
-            return Book(title, author)
-        elif answer == "2":
-            return "null"
-    elif in_system == "unread":
-        print("This book is already in the system and listed as unread; please mark that book as Read or "
-                  "change the title/author to add this book again.")
-        return "null"
     return Book(title, author)
-
 
 def get_read_book_rating_review():
     ''' Get a rating and review about recently read book from user '''
@@ -119,10 +90,6 @@ def get_read_book_rating_review():
         review = input('Enter review: ')
         return rating, review
 
-
-
 def message(msg):
     '''Display a message to the user'''
     print(msg)
-
-def 

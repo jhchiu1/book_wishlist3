@@ -1,7 +1,7 @@
 import os
 import json
 from book import Book
-from ui import get_read_book_rating_review
+
 
 DATA_DIR = 'data'
 BOOKS_FILE_NAME = os.path.join(DATA_DIR, 'wishlist.txt')
@@ -40,7 +40,6 @@ def add_book(book):
     """ Add to db, set id value, return Book"""
 
     global book_list
-
     book.id = generate_id()
     book_list.append(book)
 
@@ -51,7 +50,7 @@ def generate_id():
     return counter
 
 
-def set_read(book_id, read):
+def set_read(book_id, date_read, rating, review):
     """ Update book with given book_id to read. Return True if book is found in DB and update is made,
     False otherwise. Set a rating and review for book"""
 
@@ -60,7 +59,6 @@ def set_read(book_id, read):
     for book in book_list:
 
         if book.id == book_id:
-            rating, review = get_read_book_rating_review()
             book.rating = rating
             book.review = review
             book.date_read = date_read
@@ -81,10 +79,7 @@ def book_json_manipulation(json_as_dict):
                     book_container['read'] == 'True',
                     int(book_container['id']))
         book.rating = book_container['rating']
-        book.review = book_container['review']
         book_list.append(book)
-    except Exception as e:
-        print("Error: Not located in index!", e)
 
 
 def book_list_manipulation():
@@ -128,7 +123,6 @@ def read():
 
 def write():
     """Save all data to a file - one for books, one for the current counter value, for persistent storage"""
-
     output_data = book_list_manipulation()
 
     # Create data directory

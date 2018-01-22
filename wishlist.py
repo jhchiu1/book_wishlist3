@@ -45,34 +45,24 @@ def show_unread():
     unread = datastore.get_books(read=False)
     ui.show_list(unread)
 
-
 def show_read():
     '''Fetch and show all read books'''
     read = datastore.get_books(read=True)
     ui.show_list(read)
 
-
 def book_read():
     ''' Get choice from user, edit datastore, display success/error'''
     book_id = ui.ask_for_book_id()
-    if datastore.set_read(book_id, True):
+    if datastore.set_read(book_id, ui.get_date_read(), ui.get_read_book_rating_review()):
         ui.message('Successfully updated')
     else:
         ui.message('Book id not found in database')
-
 
 def new_book():
     '''Get info from user, add new book'''
     new_book = ui.get_new_book_info()
     datastore.add_book(new_book)
     ui.message('Book added: ' + str(new_book))
-
-
-def search_book():
-    '''Get choice from user, search datastore, display found/not found'''
-    book_title = ui.ask_for_book_title()
-    found = datastore.get_books(title=book_title)
-    ui.show_list(found)
 
 def edit():
     '''Get info from user, edit book title, author'''
@@ -93,17 +83,17 @@ def edit():
 
     ui.message("Successfully updated.")
 
-def check_book_in_system(title, author):
-    ''' Check to see if book has been read '''
-    for book in datastore.book_list:
-        if book.author == author and book.title == title and book.read is True:
-            return "read"
-        elif book.author == author and book.title == title and book.read is False:
-            return "unread"
-        elif book.author != author or book.title != title:
-            return False
-    if len(datastore.book_list) == 0:
-        return False
+def get_books(**kwargs):
+    ''' Return books from data store. With no arguments, returns everything. '''
+
+    global book_list
+
+    if len(kwargs) == 0:
+        return book_list
+
+    if 'read' in kwargs:
+        read_books = [ book for book in book_list if book.read == kwargs['read'] ]
+        return read_books
 
 def quit():
     '''Perform shutdown tasks'''
