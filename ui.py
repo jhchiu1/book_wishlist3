@@ -38,7 +38,6 @@ def show_list(books):
 
 def ask_for_book_id():
     ''' Ask user for book id, validate to ensure it is a positive integer '''
-
     while True:
         try:
             id = int(input('Enter book id:'))
@@ -87,8 +86,8 @@ def get_read_book_rating_review():
             print('Please enter a positive number')
             continue
 
-        review = input('Enter review: ')
-        return rating, review
+        '''review = input('Enter review: ')'''
+        return rating
 
 def message(msg):
     '''Display a message to the user'''

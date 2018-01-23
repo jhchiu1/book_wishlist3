@@ -50,7 +50,7 @@ def generate_id():
     return counter
 
 
-def set_read(book_id, read):
+def set_read(book_id, read, date_read, rating):
     """ Update book with given book_id to read. Return True if book is found in DB and update is made,
     False otherwise. Set a rating and review for book"""
 
@@ -60,7 +60,7 @@ def set_read(book_id, read):
 
         if book.id == book_id:
             book.rating = rating
-            book.review = review
+            '''book.review = review'''
             book.date_read = date_read
             book.read = True
             return True
@@ -136,35 +136,6 @@ def write():
 
     with open(COUNTER_FILE_NAME, 'w') as f:
         f.write(str(counter))
-
-def make_book_list(string_from_file):
-    ''' turn the string from the file into a list of Book objects'''
-
-    global book_list
-
-    books_str = string_from_file.split('\n')
-
-    for book_str in books_str:
-        data = book_str.split(separator)
-        book = Book(data[0], data[1], data[2] == 'True', int(data[3]))
-        book_list.append(book)
-
-
-def make_output_data():
-    ''' create a string containing all data on books, for writing to output file'''
-
-    global book_list
-
-    output_data = []
-
-    for book in book_list:
-        output = [ book.title, book.author, str(book.read), str(book.id) ]
-        output_str = separator.join(output)
-        output_data.append(output_str)
-
-    all_books_string = '\n'.join(output_data)
-
-    return all_books_string
 
 def get_sorted_books_by_title(**kwargs):
     ''' Return books from data store. With no arguments, returns everything. '''
