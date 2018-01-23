@@ -39,7 +39,6 @@ def handle_choice(choice):
     else:
         ui.message('Please enter a valid selection')
 
-
 def show_unread():
     '''Fetch and show all unread books'''
     unread = datastore.get_books(read=False)
@@ -64,36 +63,11 @@ def new_book():
     datastore.add_book(new_book)
     ui.message('Book added: ' + str(new_book))
 
-def edit():
-    '''Get info from user, edit book title, author'''
-    id = ui.ask_for_book_id()
-    to_edit = ui.ask_what_to_edit()
-    new_book = ui.get_new_book_info()
-    for book in datastore.show_list:
-        if book.id == id:
-            read = book.read
-            title = book.title
-            author = book.author
-            if to_edit == 'author':
-                datastore.book_list.remove(book)
-                datastore.book_list.append(Book(title, new_book_info, read, id))
-            elif to_edit == 'title':
-                datastore.show_list.remove(book)
-                datastore.show_list.append(Book(new_book_info, author, read, id))
-
-    ui.message("Successfully updated.")
-
-def get_books(**kwargs):
-    ''' Return books from data store. With no arguments, returns everything. '''
-
-    global book_list
-
-    if len(kwargs) == 0:
-        return book_list
-
-    if 'read' in kwargs:
-        read_books = [ book for book in book_list if book.read == kwargs['read'] ]
-        return read_books
+def search_book(**kwargs):
+    ''' Get choice from user, search datastore, display found/not found'''
+    book_title = ui.get_new_book_title()
+    found = datastore.get_books(title=book_title)
+    ui.show_list(found)
 
 def quit():
     '''Perform shutdown tasks'''
