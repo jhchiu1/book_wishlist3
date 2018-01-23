@@ -23,6 +23,10 @@ These instructions will get you a copy of the project up and running on your loc
    * 3 - Mark Books as Red
    * 4 - New Book
    * 5 - Search for Book by Title
+   * 6 - Edit a title or author
+   * 7 - Delete a book
+   * 8 - Sort books by title
+   * 9 - Sort books by author
    * q - Quit
 
 ### Prerequisites
