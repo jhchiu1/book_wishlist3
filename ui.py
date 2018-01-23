@@ -105,6 +105,11 @@ def get_read_book_rating_review():
         '''review = input('Enter review: ')'''
         return rating
 
+def get_search_term():
+    ''' Ask user for keyword to perform book search '''
+    search_term = input("Please enter a title or author keyword: ")
+    return search_term
+
 def message(msg):
     '''Display a message to the user'''
     print(msg)

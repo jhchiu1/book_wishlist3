@@ -63,11 +63,19 @@ def new_book():
     datastore.add_book(new_book)
     ui.message('Book added: ' + str(new_book))
 
-def search_book(**kwargs):
-    ''' Get choice from user, search datastore, display found/not found'''
-    book_title = ui.get_new_book_title()
-    found = datastore.get_books(title=book_title)
-    ui.show_list(found)
+def search():
+    ''' Get search term from user, if keyword exists, append book, show search results '''
+    search_results = []
+    all_books = datastore.get_books()
+    search_term = ui.get_search_term()
+    for book in all_books:
+        if search_term in book.title:
+            search_results.append(book)
+        elif search_term in book.author:
+            search_results.append(book)
+
+    ui.message("Here's what I found:")
+    ui.show_list(search_results)
 
 def edit():
     ''' Get book id from user, search for id, ask for new values, append '''
