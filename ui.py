@@ -58,6 +58,16 @@ def ask_for_book_title():
             print('Please enter a string')
             continue
 
+def ask_what_to_edit():
+    response = input("Do you wish to edit the Author or Title? Enter 1 for Author or 2 for Title: ")
+    while response != "1" and response != "2":
+        response = input("Please try again, enter 1 or 2.\nDo you wish to edit the Author or Title? Enter 1 for Author or 2 for Title: ")
+    if response == "1":
+        response = "author"
+    elif response == "2":
+        response = "title"
+    return response
+
 def get_date_read():
     ''' Added date read for user input with no rigid format '''
     date = input("When did you finish this book? ")
