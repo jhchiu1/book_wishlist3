@@ -63,7 +63,7 @@ def new_book():
     datastore.add_book(new_book)
     ui.message('Book added: ' + str(new_book))
 
-def search():
+def search_book():
     ''' Get search term from user, if keyword exists, append book, show search results '''
     search_results = []
     all_books = datastore.get_books()
