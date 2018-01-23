@@ -59,6 +59,7 @@ def ask_for_book_title():
             continue
 
 def ask_what_to_edit():
+    ''' Get new edit values to append '''
     response = input("Do you wish to edit the Author or Title? Enter 1 for Author or 2 for Title: ")
     while response != "1" and response != "2":
         response = input("Please try again, enter 1 or 2.\nDo you wish to edit the Author or Title? Enter 1 for Author or 2 for Title: ")
@@ -79,6 +80,11 @@ def get_new_book_info():
     title = input('Enter title: ')
     author = input('Enter author: ')
     return Book(title, author)
+
+def get_new_value():
+    ''' Ask uer for new values to append book '''
+    new_value = input("What is the new value? ")
+    return new_value
 
 def get_read_book_rating_review():
     ''' Get a rating and review about recently read book from user '''
