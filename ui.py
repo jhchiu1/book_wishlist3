@@ -79,7 +79,24 @@ def get_new_book_info():
 
     title = input('Enter title: ')
     author = input('Enter author: ')
-    return Book(title, author)
+    in_system = wishlist.check_book_in_system(title, author)
+    if in_system is False:
+        return Book(title, author)
+    elif in_system == "read":
+        answer = input("You already marked a book as Read with the same title and author. Are you sure "
+                           "you want to add this book again? Enter 1 for yes or 2 for no.")
+        while answer != "1" and answer != "2":
+            answer = input("Please try again, enter 1 for yes, 2 for no. You already marked a book as Read with the same "
+                               "title and author. Are you sure you want to add this book again? Enter 1 for yes or 2 for no.")
+        if answer == "1":
+            return Book(title, author)
+        elif answer == "2":
+            return "null"
+    elif in_system == "unread":
+        print("This book is already in the system and listed as unread; please mark that book as Read or "
+                  "change the title/author to add this book again.")
+        return "null"
+
 
 def get_new_value():
     ''' Ask uer for new values to append book '''
