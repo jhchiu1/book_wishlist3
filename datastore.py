@@ -50,7 +50,7 @@ def generate_id():
     return counter
 
 
-def set_read(book_id, read, date_read, rating):
+def set_read(book_id, date_read, rating):
     """ Update book with given book_id to read. Return True if book is found in DB and update is made,
     False otherwise. Set a rating and review for book"""
 
