@@ -96,37 +96,6 @@ def edit():
 
     ui.message("Successfully updated.")
 
-
-
-def check_book_in_system(title, author):
-    for book in datastore.book_list:
-        if book.author == author and book.title == title and book.read is True:
-            return "read"
-        elif book.author == author and book.title == title and book.read is False:
-            return "unread"
-        elif book.author != author or book.title != title:
-            return False
-    if len(datastore.book_list) == 0:
-        return Fal
-    id = ui.ask_for_book_id()
-    to_edit = ui.ask_what_to_edit()
-    new_value = ui.get_new_value()
-    for book in datastore.book_list:
-        if book.id == id:
-            read = book.read
-            title = book.title
-            author = book.author
-            if to_edit == 'author':
-                datastore.book_list.remove(book)
-                datastore.book_list.append(Book(title, new_value, read, id))
-            elif to_edit == 'title':
-                datastore.book_list.remove(book)
-                datastore.book_list.append(Book(new_value, author, read, id))
-
-    ui.message("Successfully updated.")
-
-
-
 def check_book_in_system(title, author):
     for book in datastore.book_list:
         if book.author == author and book.title == title and book.read is True:
